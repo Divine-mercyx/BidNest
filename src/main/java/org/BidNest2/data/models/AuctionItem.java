@@ -23,4 +23,5 @@ public class AuctionItem {
     private String sellerId;
     private LocalDate auctionStartDate;
     private Duration duration;
+    private String currentBidderId;
 }

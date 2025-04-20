@@ -2,10 +2,7 @@ package org.BidNest2.services.servicesInterface;
 
 import org.BidNest2.data.models.AuctionItem;
 import org.BidNest2.data.models.Subscribe;
-import org.BidNest2.dtos.requests.AuctionItemRequest;
-import org.BidNest2.dtos.requests.GetAuctionItemsRequest;
-import org.BidNest2.dtos.requests.SubscribeRequest;
-import org.BidNest2.dtos.requests.UnsubscribeRequest;
+import org.BidNest2.dtos.requests.*;
 
 import java.util.List;
 
@@ -16,4 +13,6 @@ public interface UserService {
     Subscribe subscribe(SubscribeRequest request);
 
     void unSubscribe(UnsubscribeRequest request);
+
+    void bid(BIdRequest request);
 }

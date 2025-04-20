@@ -6,10 +6,7 @@ import org.BidNest2.data.models.User;
 import org.BidNest2.data.repositories.AuctionItemRepo;
 import org.BidNest2.data.repositories.SubscribeRepo;
 import org.BidNest2.data.repositories.UserRepo;
-import org.BidNest2.dtos.requests.AuctionItemRequest;
-import org.BidNest2.dtos.requests.GetAuctionItemsRequest;
-import org.BidNest2.dtos.requests.SubscribeRequest;
-import org.BidNest2.dtos.requests.UnsubscribeRequest;
+import org.BidNest2.dtos.requests.*;
 import org.BidNest2.services.servicesInterface.UserService;
 import org.BidNest2.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,5 +83,15 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    @Override
+    public void bid(BIdRequest request) {
+        validateToken(request.getToken(), request.getBidderId());
+        AuctionItem auctionItem = auctionItemRepo.findById(request.getItemId()).orElse(null);
+        assert auctionItem != null;
+        double formerBid = auctionItem.getCurrentBidAmount();
+        if (formerBid >= request.getAmount()) throw new IllegalArgumentException("bid is not greater than current bid amount");
+        auctionItem.setCurrentBidAmount(request.getAmount());
+        auctionItemRepo.save(auctionItem);
+    }
 
 }
