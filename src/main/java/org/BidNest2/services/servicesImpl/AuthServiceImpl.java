@@ -54,6 +54,7 @@ public class AuthServiceImpl implements AuthService {
 
     private User validateUserRegistration(User user) {
         if (userRepo.findByEmail(user.getEmail()) != null) throw new DuplicateEmailException("Email already exists");
+        if (user.getEmail().isEmpty() || user.getPassword().isEmpty()) throw new UserNotFoundException("Email or password is empty");
         user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
         return userRepo.save(user);
     }

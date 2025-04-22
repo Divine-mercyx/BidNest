@@ -39,7 +39,7 @@ public class UserServiceController {
     }
 
     @PostMapping("/bid")
-    public ResponseEntity<String> bid(@RequestBody BIdRequest request) {
+    public ResponseEntity<String> bid(@RequestBody BidRequest request) {
         userServiceImpl.bid(request);
         return ResponseEntity.ok("you have successfully bid for this item");
     }

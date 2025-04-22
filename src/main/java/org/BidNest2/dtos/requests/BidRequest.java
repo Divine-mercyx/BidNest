@@ -3,7 +3,7 @@ package org.BidNest2.dtos.requests;
 import lombok.Data;
 
 @Data
-public class BIdRequest {
+public class BidRequest {
     String bidderId;
     String token;
     String itemId;

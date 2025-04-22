@@ -14,5 +14,7 @@ public interface UserService {
 
     void unSubscribe(UnsubscribeRequest request);
 
-    void bid(BIdRequest request);
+    AuctionItem bid(BidRequest request);
+
+    AuctionItem getAuctionItemById(String id);
 }
